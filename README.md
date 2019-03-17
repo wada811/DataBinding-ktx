@@ -1,8 +1,6 @@
 DataBinding-ktx
 =====
 
-[![Build Status](https://app.bitrise.io/app/25a74c8a899d5c9a/status.svg?token=rSUoGqwaasQ6M5a7KKPTdA&branch=master)](https://app.bitrise.io/app/25a74c8a899d5c9a)
-
 `DataBinding-ktx` make easy declaring ViewDataBinding by delegated property.
 
 ## Usage
