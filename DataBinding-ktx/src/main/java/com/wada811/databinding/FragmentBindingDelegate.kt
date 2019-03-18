@@ -18,7 +18,9 @@ class FragmentBindingDelegate<T : ViewDataBinding>(
             layoutResId,
             thisRef.requireActivity().findViewById(thisRef.id) as? ViewGroup,
             false
-        ).also { cached = it }
+        )
+            .also { it.lifecycleOwner = thisRef.viewLifecycleOwner }
+            .also { cached = it }
 }
 
 fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutResId: Int): FragmentBindingDelegate<T> =
