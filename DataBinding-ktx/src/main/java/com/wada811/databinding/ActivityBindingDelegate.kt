@@ -10,11 +10,11 @@ import kotlin.reflect.KProperty
 class ActivityBindingDelegate<T : ViewDataBinding>(
     @LayoutRes private val layoutResId: Int
 ) : ReadOnlyProperty<FragmentActivity, T> {
-    private var cached: T? = null
+    private var binding: T? = null
     override operator fun getValue(thisRef: FragmentActivity, property: KProperty<*>): T =
-        cached ?: DataBindingUtil.setContentView<T>(thisRef, layoutResId)
+        binding ?: DataBindingUtil.setContentView<T>(thisRef, layoutResId)
             .also { it.lifecycleOwner = thisRef }
-            .also { cached = it }
+            .also { binding = it }
 }
 
 fun <T : ViewDataBinding> FragmentActivity.bind(@LayoutRes layoutResId: Int): ActivityBindingDelegate<T> =
