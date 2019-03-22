@@ -25,6 +25,7 @@ class FragmentBindingDelegate<T : ViewDataBinding>(
             thisRef.requireActivity().findViewById(thisRef.id) as? ViewGroup,
             false
         )
+        binding!!.lifecycleOwner = thisRef
         thisRef.lifecycle.addObserver(object : LifecycleObserver {
             @OnLifecycleEvent(Lifecycle.Event.ON_START)
             fun onViewCreated() {
@@ -36,7 +37,6 @@ class FragmentBindingDelegate<T : ViewDataBinding>(
                         binding = null
                     }
                 })
-                binding!!.lifecycleOwner = thisRef.viewLifecycleOwner
             }
         })
         return binding!!
