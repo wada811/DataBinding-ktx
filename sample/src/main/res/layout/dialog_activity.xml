@@ -8,12 +8,19 @@
     </data>
 
     <LinearLayout
-        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#efefef"
         android:orientation="vertical"
-        android:padding="8dp"
-        tools:context=".MainActivity"
-        />
+        tools:context=".dialog.DialogActivity"
+        >
+
+        <Button
+            android:id="@+id/dialogButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Show Dialog"
+            />
+
+    </LinearLayout>
 </layout>

@@ -5,15 +5,19 @@
 
     <data>
 
+        <variable
+            name="text"
+            type="String"
+            />
     </data>
 
-    <LinearLayout
-        android:id="@+id/container"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#efefef"
-        android:orientation="vertical"
-        android:padding="8dp"
-        tools:context=".MainActivity"
+        android:gravity="center"
+        android:text="@{text}"
+        android:textSize="64sp"
+        tools:context=".detach.DetachFragment"
+        tools:text="1"
         />
 </layout>
