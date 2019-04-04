@@ -11,7 +11,8 @@ import androidx.lifecycle.OnLifecycleEvent
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
-class FragmentBindingDelegate<T : ViewDataBinding>(
+class FragmentBindingDelegate<T : ViewDataBinding>
+internal constructor(
     @LayoutRes private val layoutResId: Int
 ) : ReadOnlyProperty<Fragment, T> {
     private var binding: T? = null
