@@ -16,21 +16,16 @@ internal constructor(
     @LayoutRes private val layoutResId: Int
 ) : ReadOnlyProperty<Fragment, T> {
     private var binding: T? = null
-    override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-        if (binding != null) {
-            return binding!!
-        }
-        binding = DataBindingUtil.inflate(
+    override fun getValue(thisRef: Fragment, property: KProperty<*>): T =
+        binding ?: DataBindingUtil.inflate<T>(
             thisRef.layoutInflater,
             layoutResId,
             thisRef.requireActivity().findViewById(thisRef.id) as? ViewGroup,
             false
         )
-        binding!!.lifecycleOwner = thisRef
-        thisRef.lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_START)
-            fun onViewCreated() {
-                thisRef.lifecycle.removeObserver(this)
+            .also { it.lifecycleOwner = thisRef.viewLifecycleOwner }
+            .also { binding = it }
+            .also {
                 thisRef.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
                     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
                     fun onDestroyView() {
@@ -39,9 +34,6 @@ internal constructor(
                     }
                 })
             }
-        })
-        return binding!!
-    }
 }
 
 fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutResId: Int): FragmentBindingDelegate<T> =
