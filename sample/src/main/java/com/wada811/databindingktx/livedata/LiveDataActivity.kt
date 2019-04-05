@@ -20,6 +20,20 @@ class LiveDataActivity : AppCompatActivity() {
                 return LiveDataViewModel() as T
             }
         }).get(LiveDataViewModel::class.java)
+        binding.detachAttachButton.setOnClickListener {
+            val fragment = supportFragmentManager.findFragmentById(R.id.fragment)!!
+            if (fragment.isDetached) {
+                binding.detachAttachButton.text = "Detach"
+                supportFragmentManager.beginTransaction()
+                    .attach(fragment)
+                    .commit()
+            } else {
+                binding.detachAttachButton.text = "Attach"
+                supportFragmentManager.beginTransaction()
+                    .detach(fragment)
+                    .commit()
+            }
+        }
         binding.minusButton.setOnClickListener {
             viewModel.minus()
         }
