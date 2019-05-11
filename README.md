@@ -8,7 +8,7 @@ DataBinding-ktx
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
-    private val binding: MainActivityBinding by bind(R.layout.main_activity)
+    private val binding: MainActivityBinding by dataBinding(R.layout.main_activity)
 }
 ```
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
 ```kotlin
 class MainFragment : Fragment() {
-    private val binding: MainFragmentBinding by bind(R.layout.main_fragment)
+    private val binding: MainFragmentBinding by dataBinding(R.layout.main_fragment)
 }
 ```
 
