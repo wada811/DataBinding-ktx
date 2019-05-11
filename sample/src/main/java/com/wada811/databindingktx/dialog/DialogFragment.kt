@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.wada811.databinding.bind
+import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.App
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DialogFragmentBinding
@@ -21,7 +21,7 @@ class DialogFragment : androidx.fragment.app.DialogFragment() {
         }
     }
 
-    private val binding: DialogFragmentBinding by bind(R.layout.dialog_fragment)
+    private val binding: DialogFragmentBinding by dataBinding(R.layout.dialog_fragment)
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return Dialog(requireContext(), theme).also {

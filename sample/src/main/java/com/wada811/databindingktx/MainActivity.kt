@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import com.wada811.databinding.bind
+import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.backstack.BackStackActivity
 import com.wada811.databindingktx.databinding.MainActivityBinding
 import com.wada811.databindingktx.databinding.SampleListItemBinding
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         fun createIntent(context: Context) = Intent(context, clazz)
     }
 
-    private val binding: MainActivityBinding by bind(R.layout.main_activity)
+    private val binding: MainActivityBinding by dataBinding(R.layout.main_activity)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Samples.values().forEach { sample ->

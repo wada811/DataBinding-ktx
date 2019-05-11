@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.wada811.databinding.bind
+import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.App
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewPagerFragmentBinding
@@ -21,7 +21,7 @@ class ViewPagerFragment : Fragment() {
         }
     }
 
-    private val binding: ViewPagerFragmentBinding by bind(R.layout.view_pager_fragment)
+    private val binding: ViewPagerFragmentBinding by dataBinding(R.layout.view_pager_fragment)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding.text = arguments!!.getString(EXTRA_TEXT)

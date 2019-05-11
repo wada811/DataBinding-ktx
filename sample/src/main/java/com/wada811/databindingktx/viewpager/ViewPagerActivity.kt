@@ -6,13 +6,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
-import com.wada811.databinding.bind
+import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewPagerActivityBinding
 
 class ViewPagerActivity : AppCompatActivity() {
 
-    private val binding: ViewPagerActivityBinding by bind(R.layout.view_pager_activity)
+    private val binding: ViewPagerActivityBinding by dataBinding(R.layout.view_pager_activity)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.prevButton.setOnClickListener {

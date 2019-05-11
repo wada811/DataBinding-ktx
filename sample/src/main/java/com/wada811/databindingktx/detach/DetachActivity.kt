@@ -1,15 +1,14 @@
 package com.wada811.databindingktx.detach
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wada811.databinding.bind
+import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DetachActivityBinding
 
 class DetachActivity : AppCompatActivity() {
 
-    private val binding: DetachActivityBinding by bind(R.layout.detach_activity)
+    private val binding: DetachActivityBinding by dataBinding(R.layout.detach_activity)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.detachAttachButton.setOnClickListener {
