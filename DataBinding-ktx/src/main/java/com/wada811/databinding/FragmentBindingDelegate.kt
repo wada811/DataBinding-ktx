@@ -36,5 +36,5 @@ internal constructor(
             }
 }
 
-fun <T : ViewDataBinding> Fragment.bind(@LayoutRes layoutResId: Int): FragmentBindingDelegate<T> =
+fun <T : ViewDataBinding> Fragment.dataBinding(@LayoutRes layoutResId: Int): FragmentBindingDelegate<T> =
     FragmentBindingDelegate(layoutResId)

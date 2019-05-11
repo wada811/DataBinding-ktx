@@ -32,5 +32,5 @@ internal constructor(
     override operator fun getValue(thisRef: FragmentActivity, property: KProperty<*>): T = binding
 }
 
-fun <T : ViewDataBinding> FragmentActivity.bind(@LayoutRes layoutResId: Int): ActivityBindingDelegate<T> =
+fun <T : ViewDataBinding> FragmentActivity.dataBinding(@LayoutRes layoutResId: Int): ActivityBindingDelegate<T> =
     ActivityBindingDelegate(this, layoutResId)
