@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.leakcanary.LeakCanary
 import com.wada811.databinding.dataBinding
-import com.wada811.databindingktx.App
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DialogFragmentBinding
 
@@ -36,6 +36,6 @@ class DialogFragment : androidx.fragment.app.DialogFragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        App.getRefWatcher(requireContext()).watch(this)
+        LeakCanary.installedRefWatcher().watch(this)
     }
 }

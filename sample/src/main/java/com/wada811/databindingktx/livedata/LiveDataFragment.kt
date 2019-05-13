@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.squareup.leakcanary.LeakCanary
 import com.wada811.databinding.dataBinding
-import com.wada811.databindingktx.App
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.LiveDataFragmentBinding
 
@@ -24,15 +24,15 @@ class LiveDataFragment : Fragment() {
         val viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return com.wada811.databindingktx.livedata.LiveDataViewModel() as T
+                return LiveDataViewModel() as T
             }
-        }).get(com.wada811.databindingktx.livedata.LiveDataViewModel::class.java)
+        }).get(LiveDataViewModel::class.java)
         binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        App.getRefWatcher(requireContext()).watch(this)
+        LeakCanary.installedRefWatcher().watch(this)
     }
 }
