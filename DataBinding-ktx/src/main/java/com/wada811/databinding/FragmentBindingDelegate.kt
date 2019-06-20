@@ -22,19 +22,19 @@ internal constructor(
             layoutResId,
             thisRef.requireActivity().findViewById(thisRef.id) as? ViewGroup,
             false
-        )
-            .also { it.lifecycleOwner = thisRef.viewLifecycleOwner }
-            .also { binding = it }
-            .also {
-                thisRef.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-                    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-                    fun onDestroyView() {
-                        thisRef.viewLifecycleOwner.lifecycle.removeObserver(this)
-                        binding = null
-                    }
-                })
-            }
+        ).also {
+            it.lifecycleOwner = thisRef.viewLifecycleOwner
+            binding = it
+            thisRef.viewLifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
+                @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+                fun onDestroyView() {
+                    thisRef.viewLifecycleOwner.lifecycle.removeObserver(this)
+                    binding = null // For Fragment's view recreation
+                }
+            })
+        }
 }
 
+@Suppress("unused")
 fun <T : ViewDataBinding> Fragment.dataBinding(@LayoutRes layoutResId: Int): FragmentBindingDelegate<T> =
     FragmentBindingDelegate(layoutResId)
