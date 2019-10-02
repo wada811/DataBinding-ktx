@@ -15,13 +15,13 @@ import com.wada811.databindingktx.databinding.ViewBindingFragmentBinding
 @SuppressWarnings("ALL")
 class ViewBindingSampleKotlin {
 
-    class ViewBindingActivity : FragmentActivity() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            val binding = ViewBindingActivityBinding.inflate(layoutInflater)
-            setContentView(binding.root)
-        }
+class ViewBindingActivity : FragmentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = ViewBindingActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+}
 
     class TopLevelFunctionActivity : FragmentActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +38,14 @@ class ViewBindingSampleKotlin {
         }
     }
 
+    class DelegatedPropertyWithReflectionActivity : FragmentActivity() {
+        private val binding: ViewBindingActivityBinding by viewBinding()
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            // use binding
+        }
+    }
+
     class ViewBindingFragment : Fragment() {
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             val binding = ViewBindingFragmentBinding.inflate(inflater, container, false)
@@ -46,9 +54,17 @@ class ViewBindingSampleKotlin {
     }
 
     class DelegatedPropertyFragment : Fragment() {
-    private val binding by viewBinding { inflater, container ->
-        ViewBindingFragmentBinding.inflate(inflater, container, false)
+        private val binding by viewBinding { inflater, container ->
+            ViewBindingFragmentBinding.inflate(inflater, container, false)
+        }
+
+        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+            return binding.root
+        }
     }
+
+    class DelegatedPropertyWithReflectionFragment : Fragment() {
+        private val binding: ViewBindingFragmentBinding by viewBinding()
 
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             return binding.root
