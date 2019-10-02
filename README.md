@@ -1,24 +1,110 @@
 DataBinding-ktx
 =====
 
-`DataBinding-ktx` make easy declaring ViewDataBinding by delegated property.
+`DataBinding-ktx` make easy declaring DataBinding and ViewBinding.
 
-## Usage
+## Usage in DataBinding
 ### Activity
 
-```kotlin
-class MainActivity : AppCompatActivity() {
-    private val binding: MainActivityBinding by dataBinding(R.layout.main_activity)
-}
+#### Delegated Property
+
+```diff
+ class DataBindingActivity : FragmentActivity() {
++    private val binding: DataBindingActivityBinding by dataBinding(R.layout.data_binding_activity)
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-        val binding = DataBindingUtil.setContentView<DataBindingActivityBinding>(this, R.layout.data_binding_activity)
+-        binding.lifecycleOwner = this
+     }
+ }
+```
+
+#### Top-level function
+
+```diff
+ class DataBindingActivity : FragmentActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-        val binding = DataBindingUtil.setContentView<DataBindingActivityBinding>(this, R.layout.data_binding_activity)
+-        binding.lifecycleOwner = this
++        val binding = setContentView<DataBindingActivityBinding>(this, R.layout.data_binding_activity)
+     }
+ }
 ```
 
 ### Fragment
 
-```kotlin
-class MainFragment : Fragment() {
-    private val binding: MainFragmentBinding by dataBinding(R.layout.main_fragment)
-}
+#### Delegated Property
+
+```diff
+ class DataBindingFragment : Fragment() {
++    private val binding: DataBindingFragmentBinding by dataBinding(R.layout.data_binding_fragment)
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+-        val binding = DataBindingUtil.inflate<DataBindingFragmentBinding>(inflater, R.layout.data_binding_fragment, container, false)
+-        binding.lifecycleOwner = viewLifecycleOwner
+         return binding.root
+     }
+ }
+
 ```
+
+#### Top-level function
+
+```diff
+ class DataBindingFragment : Fragment() {
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+-        val binding = DataBindingUtil.inflate<DataBindingFragmentBinding>(inflater, R.layout.data_binding_fragment, container, false)
+-        binding.lifecycleOwner = viewLifecycleOwner
++        val binding = inflate<DataBindingFragmentBinding>(this, R.layout.data_binding_fragment, container, false)
+         return binding.root
+     }
+ }
+
+```
+## Usage in ViewBinding
+### Activity
+
+#### Delegated Property
+
+```diff
+ class ViewBindingActivity : FragmentActivity() {
++    private val binding by viewBinding { ViewBindingActivityBinding.inflate(it) }
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-        val binding = ViewBindingActivityBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
+     }
+ }
+```
+
+#### Top-level function
+
+```diff
+ class ViewBindingActivity : FragmentActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-        val binding = ViewBindingActivityBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
++        val binding = setContentView { ViewBindingActivityBinding.inflate(it) }
+     }
+ }
+```
+
+### Fragment
+#### Delegated Property
+
+```diff
+ class ViewBindingFragment : Fragment() {
++    private val binding by viewBinding { inflater, container ->
++        ViewBindingFragmentBinding.inflate(inflater, container, false)
++    }
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+-        val binding = ViewBindingFragmentBinding.inflate(inflater, container, false)
+         return binding.root
+     }
+ }
+```
+
 
 ## Gradle
 
@@ -26,7 +112,7 @@ class MainFragment : Fragment() {
 
 ```groovy
 repositories {
-    maven { url "https://jitpack.io" }
+    maven { url "https://www.jitpack.io" }
 }
 
 dependencies {
