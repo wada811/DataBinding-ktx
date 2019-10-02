@@ -77,6 +77,19 @@ DataBinding-ktx
  }
 ```
 
+#### Delegated Property with Reflection
+
+```diff
+ class ViewBindingActivity : FragmentActivity() {
++    private val binding: ViewBindingActivityBinding by viewBinding()
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+-        val binding = ViewBindingActivityBinding.inflate(layoutInflater)
+-        setContentView(binding.root)
+     }
+ }
+```
+
 #### Top-level function
 
 ```diff
@@ -98,6 +111,18 @@ DataBinding-ktx
 +    private val binding by viewBinding { inflater, container ->
 +        ViewBindingFragmentBinding.inflate(inflater, container, false)
 +    }
+     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+-        val binding = ViewBindingFragmentBinding.inflate(inflater, container, false)
+         return binding.root
+     }
+ }
+```
+
+#### Delegated Property with Reflection
+
+```diff
+ class ViewBindingFragment : Fragment() {
++    private val binding: ViewBindingFragmentBinding by viewBinding()
      override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 -        val binding = ViewBindingFragmentBinding.inflate(inflater, container, false)
          return binding.root

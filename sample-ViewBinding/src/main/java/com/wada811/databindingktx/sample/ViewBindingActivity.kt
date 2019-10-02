@@ -8,7 +8,8 @@ import com.wada811.databindingktx.databinding.ViewBindingActivityBinding
 
 class ViewBindingActivity : AppCompatActivity() {
 
-    private val binding by viewBinding { ViewBindingActivityBinding.inflate(it) }
+//    private val binding by viewBinding { ViewBindingActivityBinding.inflate(it) }
+    private val binding: ViewBindingActivityBinding by viewBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {

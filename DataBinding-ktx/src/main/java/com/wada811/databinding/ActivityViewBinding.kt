@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import androidx.fragment.app.FragmentActivity
 import androidx.viewbinding.ViewBinding
 
-fun <T : ViewBinding> FragmentActivity.viewBinding(inflate: (inflater: LayoutInflater) -> T): Lazy<T> {
+inline fun <reified T : ViewBinding> FragmentActivity.viewBinding(
+    noinline inflate: (inflater: LayoutInflater) -> T = {
+        T::class.java.getMethod("inflate").invoke(layoutInflater) as T
+    }
+): Lazy<T> {
     return object : Lazy<T> {
         private var binding: T? = null
         override fun isInitialized(): Boolean = binding != null
