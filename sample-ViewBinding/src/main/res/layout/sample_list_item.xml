@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.wada811.databindingktx.MainActivity.Samples"
+            />
+    </data>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:background="#ffffff"
+        android:elevation="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@{viewModel.name}"
+        android:textSize="16sp"
+        app:elevation="4dp"
+        tools:ignore="UnusedAttribute"
+        tools:text="Sample"
+        />
+</layout>
