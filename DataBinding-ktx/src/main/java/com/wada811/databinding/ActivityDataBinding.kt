@@ -15,14 +15,14 @@ fun <T : ViewDataBinding> FragmentActivity.dataBinding(@LayoutRes layoutResId: I
             get() = binding ?: setContentView<T>(this@dataBinding, layoutResId).also {
                 binding = it
             }
-    }
-}
 
-fun <T : ViewDataBinding> setContentView(activity: FragmentActivity, layoutResId: Int): T {
-    return DataBindingUtil.inflate<T>(activity.layoutInflater, layoutResId, null, false).also {
-        // On Android 8, DataBindingUtil.setContentView will crash sometimes.
-        // https://stackoverflow.com/questions/50060653/app-crashing-when-using-android-data-binding-on-android-8
-        activity.setContentView(it.root)
-        it.lifecycleOwner = activity
+        private fun <T : ViewDataBinding> setContentView(activity: FragmentActivity, layoutResId: Int): T {
+            return DataBindingUtil.inflate<T>(activity.layoutInflater, layoutResId, null, false).also {
+                // On Android 8, DataBindingUtil.setContentView will crash sometimes.
+                // https://stackoverflow.com/questions/50060653/app-crashing-when-using-android-data-binding-on-android-8
+                activity.setContentView(it.root)
+                it.lifecycleOwner = activity
+            }
+        }
     }
 }

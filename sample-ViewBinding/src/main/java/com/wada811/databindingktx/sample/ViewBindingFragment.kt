@@ -20,7 +20,6 @@ class ViewBindingFragment : Fragment() {
         }
     }
 
-//    private val binding by viewBinding { inflater, container -> ViewBindingFragmentBinding.inflate(inflater, container, false) }
     private val binding: ViewBindingFragmentBinding by viewBinding()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return binding.root
