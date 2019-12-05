@@ -9,15 +9,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import com.wada811.databinding.dataBinding
-import com.wada811.databinding.inflate
-import com.wada811.databinding.setContentView
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DataBindingActivityBinding
 import com.wada811.databindingktx.databinding.DataBindingFragmentBinding
 
 @SuppressLint("Registered")
-class DataBindingSampleKotlin {
-
+class DataBindingSample {
     class DataBindingActivity : FragmentActivity() {
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -26,14 +23,7 @@ class DataBindingSampleKotlin {
         }
     }
 
-    class TopLevelFunctionActivity : FragmentActivity() {
-        override fun onCreate(savedInstanceState: Bundle?) {
-            super.onCreate(savedInstanceState)
-            val binding = setContentView<DataBindingActivityBinding>(this, R.layout.data_binding_activity)
-        }
-    }
-
-    class DelegatedPropertyActivity : FragmentActivity() {
+    class DataBindingKtxActivity : FragmentActivity() {
         private val binding: DataBindingActivityBinding by dataBinding(R.layout.data_binding_activity)
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
@@ -49,15 +39,7 @@ class DataBindingSampleKotlin {
         }
     }
 
-    class TopLevelFunctionFragment : Fragment() {
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            val binding = inflate<DataBindingFragmentBinding>(this, R.layout.data_binding_fragment, container, false)
-            return binding.root
-        }
-    }
-
-
-    class DelegatedPropertyFragment : Fragment() {
+    class DataBindingKtxFragment : Fragment() {
         private val binding: DataBindingFragmentBinding by dataBinding(R.layout.data_binding_fragment)
         override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
             return binding.root
