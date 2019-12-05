@@ -21,9 +21,11 @@ inline fun <reified T : ViewBinding> Fragment.viewBinding(): Lazy<T> {
                         viewLifecycleOwnerLiveData.removeObserver(this)
                         viewLifecycleOwnerLiveData.observeForever(object : Observer<LifecycleOwner> {
                             override fun onChanged(owner: LifecycleOwner?) {
-                                // after onDestroyView, viewLifecycleOwnerLiveData set null in FragmentManagerImpl
-                                viewLifecycleOwnerLiveData.removeObserver(this)
-                                binding = null // for avoiding to leak Fragment's view
+                                if (owner == null) {
+                                    // after onDestroyView, viewLifecycleOwnerLiveData set null in FragmentManagerImpl
+                                    viewLifecycleOwnerLiveData.removeObserver(this)
+                                    binding = null // for avoiding to leak Fragment's view
+                                }
                             }
                         })
                     }
