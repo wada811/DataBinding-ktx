@@ -6,9 +6,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.BackStackActivityBinding
 
-class BackStackActivity : AppCompatActivity() {
-
-    private val binding: BackStackActivityBinding by dataBinding(R.layout.back_stack_activity)
+class BackStackActivity : AppCompatActivity(R.layout.back_stack_activity) {
+    private val binding: BackStackActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

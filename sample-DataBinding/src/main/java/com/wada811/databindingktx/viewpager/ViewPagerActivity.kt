@@ -10,9 +10,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewPagerActivityBinding
 
-class ViewPagerActivity : AppCompatActivity() {
-
-    private val binding: ViewPagerActivityBinding by dataBinding(R.layout.view_pager_activity)
+class ViewPagerActivity : AppCompatActivity(R.layout.view_pager_activity) {
+    private val binding: ViewPagerActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.prevButton.setOnClickListener {

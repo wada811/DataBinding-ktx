@@ -10,18 +10,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewPagerFragmentBinding
 
-class ViewPagerFragment : Fragment() {
-
-    companion object {
-        private const val EXTRA_TEXT = "text"
-        fun newInstance(text: String) = ViewPagerFragment().also { fragment ->
-            fragment.arguments = Bundle().also { bundle ->
-                bundle.putString(EXTRA_TEXT, text)
-            }
-        }
-    }
-
-    private val binding: ViewPagerFragmentBinding by dataBinding(R.layout.view_pager_fragment)
+class ViewPagerFragment : Fragment(R.layout.view_pager_fragment) {
+    private val binding: ViewPagerFragmentBinding by dataBinding()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding.text = arguments!!.getString(EXTRA_TEXT)
@@ -31,5 +21,14 @@ class ViewPagerFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         LeakCanary.installedRefWatcher().watch(this)
+    }
+
+    companion object {
+        private const val EXTRA_TEXT = "text"
+        fun newInstance(text: String) = ViewPagerFragment().also { fragment ->
+            fragment.arguments = Bundle().also { bundle ->
+                bundle.putString(EXTRA_TEXT, text)
+            }
+        }
     }
 }

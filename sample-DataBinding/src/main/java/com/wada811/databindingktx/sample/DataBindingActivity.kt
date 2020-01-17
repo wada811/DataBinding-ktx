@@ -8,9 +8,8 @@ import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DataBindingActivityBinding
 
 @SuppressLint("Registered")
-class DataBindingActivity : AppCompatActivity() {
-
-    private val binding: DataBindingActivityBinding by dataBinding(R.layout.data_binding_activity)
+class DataBindingActivity : AppCompatActivity(R.layout.data_binding_activity) {
+    private val binding: DataBindingActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {

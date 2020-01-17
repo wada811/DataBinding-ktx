@@ -2,13 +2,12 @@ package com.wada811.databindingktx.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wada811.databinding.viewBinding
+import com.wada811.viewbinding.viewBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewBindingActivityBinding
 
-class ViewBindingActivity : AppCompatActivity() {
-
-    private val binding: ViewBindingActivityBinding by viewBinding()
+class ViewBindingActivity : AppCompatActivity(R.layout.view_binding_activity) {
+    private val binding by viewBinding(ViewBindingActivityBinding::bind)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.button.setOnClickListener {

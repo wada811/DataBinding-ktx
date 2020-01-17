@@ -23,8 +23,8 @@ class DataBindingSample {
         }
     }
 
-    class DataBindingKtxActivity : FragmentActivity() {
-        private val binding: DataBindingActivityBinding by dataBinding(R.layout.data_binding_activity)
+    class DataBindingKtxActivity : FragmentActivity(R.layout.data_binding_activity) {
+        private val binding: DataBindingActivityBinding by dataBinding()
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
             // use binding
@@ -39,11 +39,11 @@ class DataBindingSample {
         }
     }
 
-    class DataBindingKtxFragment : Fragment() {
-        private val binding: DataBindingFragmentBinding by dataBinding(R.layout.data_binding_fragment)
-        override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            return binding.root
+    class DataBindingKtxFragment : Fragment(R.layout.data_binding_fragment) {
+        private val binding: DataBindingFragmentBinding by dataBinding()
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+            // use binding
         }
     }
-
 }

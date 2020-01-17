@@ -27,9 +27,6 @@
             android:name=".detach.DetachActivity"
             android:label="Detach" />
         <activity
-            android:name=".dialog.DialogActivity"
-            android:label="Dialog" />
-        <activity
             android:name=".livedata.LiveDataActivity"
             android:label="LiveData" />
         <activity

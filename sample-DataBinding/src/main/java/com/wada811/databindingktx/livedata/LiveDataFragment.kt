@@ -12,14 +12,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.LiveDataFragmentBinding
 
-class LiveDataFragment : Fragment() {
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = LiveDataFragment()
-    }
-
-    private val binding: LiveDataFragmentBinding by dataBinding(R.layout.live_data_fragment)
+class LiveDataFragment : Fragment(R.layout.live_data_fragment) {
+    private val binding: LiveDataFragmentBinding by dataBinding()
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val viewModel = ViewModelProvider(requireActivity(), object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
@@ -34,5 +28,10 @@ class LiveDataFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         LeakCanary.installedRefWatcher().watch(this)
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance() = LiveDataFragment()
     }
 }
