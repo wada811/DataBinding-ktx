@@ -11,16 +11,8 @@ import com.wada811.databindingktx.databinding.MainActivityBinding
 import com.wada811.databindingktx.databinding.SampleListItemBinding
 import com.wada811.databindingktx.sample.ViewBindingActivity
 
-class MainActivity : AppCompatActivity() {
-
-    enum class Samples(private val clazz: Class<out Activity>) {
-        ViewBinding(ViewBindingActivity::class.java),
-        ;
-
-        fun createIntent(context: Context) = Intent(context, clazz)
-    }
-
-    private val binding: MainActivityBinding by dataBinding(R.layout.main_activity)
+class MainActivity : AppCompatActivity(R.layout.main_activity) {
+    private val binding: MainActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Samples.values().forEach { sample ->
@@ -36,5 +28,12 @@ class MainActivity : AppCompatActivity() {
             }
             binding.container.addView(itemBinding.root)
         }
+    }
+
+    enum class Samples(private val clazz: Class<out Activity>) {
+        ViewBinding(ViewBindingActivity::class.java),
+        ;
+
+        fun createIntent(context: Context) = Intent(context, clazz)
     }
 }

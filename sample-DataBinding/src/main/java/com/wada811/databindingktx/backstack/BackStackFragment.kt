@@ -10,7 +10,18 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.BackStackFragmentBinding
 
-class BackStackFragment : Fragment() {
+class BackStackFragment : Fragment(R.layout.back_stack_fragment) {
+    private val binding: BackStackFragmentBinding by dataBinding()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.text = arguments!!.getString(EXTRA_TEXT)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LeakCanary.installedRefWatcher().watch(this)
+    }
 
     companion object {
         private const val EXTRA_TEXT = "text"
@@ -19,17 +30,5 @@ class BackStackFragment : Fragment() {
                 bundle.putString(EXTRA_TEXT, text)
             }
         }
-    }
-
-    private val binding: BackStackFragmentBinding by dataBinding(R.layout.back_stack_fragment)
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding.text = arguments!!.getString(EXTRA_TEXT)
-        return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        LeakCanary.installedRefWatcher().watch(this)
     }
 }

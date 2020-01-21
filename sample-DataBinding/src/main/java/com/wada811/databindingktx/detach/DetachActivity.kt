@@ -6,9 +6,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DetachActivityBinding
 
-class DetachActivity : AppCompatActivity() {
-
-    private val binding: DetachActivityBinding by dataBinding(R.layout.detach_activity)
+class DetachActivity : AppCompatActivity(R.layout.detach_activity) {
+    private val binding: DetachActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.detachAttachButton.setOnClickListener {

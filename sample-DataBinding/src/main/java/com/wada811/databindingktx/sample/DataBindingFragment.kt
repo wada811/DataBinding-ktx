@@ -10,7 +10,16 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.DataBindingFragmentBinding
 
-class DataBindingFragment : Fragment() {
+class DataBindingFragment : Fragment(R.layout.data_binding_fragment) {
+    private val binding: DataBindingFragmentBinding by dataBinding()
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.data_binding_fragment, container, false)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        LeakCanary.installedRefWatcher().watch(this)
+    }
 
     companion object {
         private const val EXTRA_TEXT = "text"
@@ -19,15 +28,5 @@ class DataBindingFragment : Fragment() {
                 bundle.putString(EXTRA_TEXT, text)
             }
         }
-    }
-
-    private val binding: DataBindingFragmentBinding by dataBinding(R.layout.data_binding_fragment)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return binding.root
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        LeakCanary.installedRefWatcher().watch(this)
     }
 }

@@ -8,10 +8,8 @@ import com.wada811.databinding.dataBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.LiveDataActivityBinding
 
-class LiveDataActivity : AppCompatActivity() {
-
-    private val binding: LiveDataActivityBinding by dataBinding(R.layout.live_data_activity)
-
+class LiveDataActivity : AppCompatActivity(R.layout.live_data_activity) {
+    private val binding: LiveDataActivityBinding by dataBinding()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {

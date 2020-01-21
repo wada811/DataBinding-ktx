@@ -1,19 +1,17 @@
-@file:JvmName("ActivityDataBinding")
+@file:JvmName("ActivityViewBinding")
 
-package com.wada811.databinding
+package com.wada811.viewbinding
 
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import androidx.viewbinding.ViewBinding
 
-fun <T : ViewDataBinding> FragmentActivity.dataBinding(): Lazy<T> = object : Lazy<T> {
+fun <T : ViewBinding> FragmentActivity.viewBinding(bind: (View) -> T): Lazy<T> = object : Lazy<T> {
     private var binding: T? = null
     override fun isInitialized(): Boolean = binding != null
     override val value: T
-        get() = binding ?: bind<T>(getContentView()).also {
-            it.lifecycleOwner = this@dataBinding
+        get() = binding ?: bind(getContentView()).also {
             binding = it
         }
 
@@ -22,6 +20,4 @@ fun <T : ViewDataBinding> FragmentActivity.dataBinding(): Lazy<T> = object : Laz
             "Call setContentView or Use Activity's secondary constructor passing layout res id."
         }
     }
-
-    private fun <T : ViewDataBinding> bind(view: View): T = DataBindingUtil.bind(view)!!
 }
