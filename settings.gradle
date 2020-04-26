@@ -1,3 +1,2 @@
 include ':DataBinding-ktx'
-include ':sample-DataBinding'
-include ':sample-ViewBinding'
+include ':sample'
