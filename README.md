@@ -140,7 +140,7 @@ class YourFragment : DataBindingFragment<YourFragmentBinding>(R.layout.your_frag
 open class ViewBindingFragment<T : ViewBinding>(@LayoutRes contentLayoutId : Int, bind: (View) -> T) : Fragment(contentLayoutId) {
     protected val binding: T by viewBinding(bind)
 } 
-class YourFragment : ViewBindingFragment<YourFragmentBinding>(R.layout.your_fragment) {
+class YourFragment : ViewBindingFragment<YourFragmentBinding>(R.layout.your_fragment,YourFragmentBinding::bind) {
     // DO NOT override onCreateView
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
