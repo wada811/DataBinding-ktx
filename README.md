@@ -4,6 +4,7 @@ DataBinding-ktx
 `DataBinding-ktx` make easy declaring DataBinding and ViewBinding.
 
 ## Problems in DataBinding and ViewBinding
+- Forgetting to call `setLifecycleOwner` in DataBinding.
 - Differences in the way of declaring a `binding` variable in Activity and Fragment.
     - In Activity, you can declare the `binding` variable using `by lazy`.
     - In Fragment, you can't declare the `binding` variable using `by lazy` because of recreating Fragment's view.
@@ -11,13 +12,11 @@ DataBinding-ktx
     - If you use Navigation component, BackStack or detach in Fragment, Fragment is still alive but Fragment's view is dead after onDestroyView.
       Because the `binding` variable has view tree, your app wasted memory.
       For saving memory, you should set the `binding` variable to null after onDestroyView.
-- Forgetting to call `setLifecycleOwner` in DataBinding.
-- In Activity, lazy binding is lazy setContentView. 
 
 ## Overview
+- `DataBinding-ktx` is automatically calling `setLifecycleOwner` in DataBinding.
 - `DataBinding-ktx` provide the unified way of declaring the `binding` variable in Activity and Fragment.
 - `DataBinding-ktx` is saving memory because of cleaning up the `binding` variable having the view tree after onDestroyView.
-- `DataBinding-ktx` is automatically calling `setLifecycleOwner` in DataBinding.
 - `DataBinding-ktx` needs one of the following
     - calling `setContentView` in Activity and calling `inflater.inflate` in `onCreateView` of Fragment.
     - calling Activity/Fragment's secondary constructor passing layout res id.
