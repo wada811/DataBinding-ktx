@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity(R.layout.main_activity) {
         Detach(DetachActivity::class.java),
         LiveData(LiveDataActivity::class.java),
         ViewPager(ViewPagerActivity::class.java),
-        ViewBinding(ViewPagerActivity::class.java),
         ;
 
         fun createIntent(context: Context) = Intent(context, clazz)

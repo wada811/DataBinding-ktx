@@ -1,9 +1,9 @@
 DataBinding-ktx
 =====
 
-`DataBinding-ktx` make easy declaring DataBinding and ViewBinding.
+`DataBinding-ktx` make easy declaring DataBinding.
 
-## Problems in DataBinding and ViewBinding
+## Problems in DataBinding
 - Forgetting to call `setLifecycleOwner` in DataBinding.
 - Differences in the way of declaring a `binding` variable in Activity and Fragment.
     - In Activity, you can declare the `binding` variable using `by lazy`.
@@ -14,7 +14,7 @@ DataBinding-ktx
       For saving memory, you should set the `binding` variable to null after onDestroyView.
 
 ## Overview
-- `DataBinding-ktx` is automatically calling `setLifecycleOwner` in DataBinding.
+- `DataBinding-ktx` is automatically calling `setLifecycleOwner`.
 - `DataBinding-ktx` provide the unified way of declaring the `binding` variable in Activity and Fragment.
 - `DataBinding-ktx` is saving memory because of cleaning up the `binding` variable having the view tree after onDestroyView.
 - `DataBinding-ktx` needs one of the following
@@ -22,13 +22,8 @@ DataBinding-ktx
     - calling Activity/Fragment's secondary constructor passing layout res id.
 
 ## Usage 
-### DataBinding
 ```kotlin
 private val binding: DataBindingActivityBinding by dataBinding()
-```
-### ViewBinding
-```kotlin
-private val binding by viewBinding { ViewBindingActivityBinding.bind(it) }
 ```
 ### Activity
 - Use `setContentView` before using the `binding` variable.
@@ -88,7 +83,6 @@ class DataBindingFragment : Fragment(R.layout.data_binding_fragment) {
 ### Activity
 - If you forget to use Activity's secondary constructor passing layout res id, your app crash.
 
-#### DataBinding
 ```kotlin
 // You can define and use DataBindingAppCompatActivity for not forgetting.
 open class DataBindingAppCompatActivity<T : ViewDataBinding>(@LayoutRes contentLayoutId : Int) : AppCompatActivity(contentLayoutId) {
@@ -101,25 +95,10 @@ class YourActivity : DataBindingAppCompatActivity<YourActivityBinding>(R.layout.
     }
 }
 ```
-#### ViewBinding
-```kotlin
-// You can define and use ViewBindingAppCompatActivity for not forgetting.
-open class ViewBindingAppCompatActivity<T : ViewBinding>(@LayoutRes contentLayoutId: Int, bind: (View) -> T) : AppCompatActivity(contentLayoutId) {
-    protected val binding by viewBinding(bind)
-}
-
-class YourActivity : ViewBindingAppCompatActivity<YourActivityBinding>(R.layout.your_activity, YourActivityBinding::bind) {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        // You can use binding
-    }
-}
-```
 
 ### Fragment
 - If you forget to use Fragment's secondary constructor passing layout res id, Fragment is not shown.
 
-#### DataBinding
 ```kotlin
 // You can define and use DataBindingFragment for not forgetting.
 open class DataBindingFragment<T : ViewDataBinding>(@LayoutRes contentLayoutId : Int) : Fragment(contentLayoutId) {
@@ -133,26 +112,18 @@ class YourFragment : DataBindingFragment<YourFragmentBinding>(R.layout.your_frag
     }
 }
 ```
-#### ViewBinding
-```kotlin
-// You can define and use ViewBindingFragment for not forgetting.
-open class ViewBindingFragment<T : ViewBinding>(@LayoutRes contentLayoutId : Int, bind: (View) -> T) : Fragment(contentLayoutId) {
-    protected val binding: T by viewBinding(bind)
-} 
-class YourFragment : ViewBindingFragment<YourFragmentBinding>(R.layout.your_fragment,YourFragmentBinding::bind) {
-    // DO NOT override onCreateView
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // You can use binding
-    }
-}
-```
 
 ## Gradle
 
 [![](https://jitpack.io/v/wada811/DataBinding-ktx.svg)](https://jitpack.io/#wada811/DataBinding-ktx)
 
 ```groovy
+android {
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
 repositories {
     maven { url "https://www.jitpack.io" }
 }
@@ -164,6 +135,6 @@ dependencies {
 
 ## License
 
-Copyright (C) 2019 wada811
+Copyright (C) 2020 wada811
 
 Licensed under the Apache License, Version 2.0
