@@ -31,9 +31,5 @@
         <activity
             android:name=".viewpager.ViewPagerActivity"
             android:label="ViewPager" />
-        <activity
-            android:name=".viewbinding.ViewBindingActivity"
-            android:label="ViewBinding" />
     </application>
-
 </manifest>
