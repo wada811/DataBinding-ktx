@@ -5,13 +5,20 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewBindingFragmentBinding
+import com.wada811.databindingktx.databinding.ViewStubBinding
 import com.wada811.viewbinding.viewBinding
 
-class ViewBindingFragment : Fragment(R.layout.view_binding_fragment) {
-    private val binding by viewBinding(ViewBindingFragmentBinding::bind)
+class ViewBindingFragment : Fragment(R.layout.view_stub) {
+    private val viewStubBinding by viewBinding(ViewStubBinding::bind)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.text.text = requireArguments().getString(EXTRA_TEXT)
+        viewStubBinding.viewStub.setOnInflateListener { stub, inflated ->
+            val binding = ViewBindingFragmentBinding.bind(inflated)
+            binding.text.text = requireArguments().getString(EXTRA_TEXT)
+        }
+        if (!viewStubBinding.viewStub.isInflated) {
+            viewStubBinding.viewStub.viewStub?.inflate()
+        }
     }
 
     companion object {

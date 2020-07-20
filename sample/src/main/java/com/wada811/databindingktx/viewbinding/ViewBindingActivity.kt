@@ -2,9 +2,9 @@ package com.wada811.databindingktx.viewbinding
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wada811.viewbinding.viewBinding
 import com.wada811.databindingktx.R
 import com.wada811.databindingktx.databinding.ViewBindingActivityBinding
+import com.wada811.viewbinding.viewBinding
 
 class ViewBindingActivity : AppCompatActivity(R.layout.view_binding_activity) {
     private val binding by viewBinding(ViewBindingActivityBinding::bind)
