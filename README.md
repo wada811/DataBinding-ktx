@@ -3,6 +3,8 @@ DataBinding-ktx
 
 `DataBinding-ktx` make easy declaring DataBinding.
 
+[ViewBinding-ktx](https://github.com/wada811/ViewBinding-ktx) is here.
+
 ## Problems in DataBinding
 - Forgetting to call `setLifecycleOwner` in DataBinding.
 - Differences in the way of declaring a `binding` variable in Activity and Fragment.
