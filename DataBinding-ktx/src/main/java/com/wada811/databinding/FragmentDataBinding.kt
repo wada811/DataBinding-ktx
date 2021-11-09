@@ -24,3 +24,12 @@ fun <T : ViewDataBinding> Fragment.dataBinding(): ReadOnlyProperty<Fragment, T> 
     }
 }
 
+fun <T : ViewDataBinding> Fragment.withBinding(withBinding: (binding: T) -> Unit) {
+    view?.let { view ->
+        val binding = DataBindingUtil.bind<T>(view)!!.also {
+            it.lifecycleOwner = viewLifecycleOwner
+        }
+        withBinding(binding)
+    }
+}
+
