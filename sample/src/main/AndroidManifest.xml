@@ -5,31 +5,20 @@
 
     <application
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".DataBindingActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".backstack.BackStackActivity"
-            android:label="BackStack" />
-        <activity
-            android:name=".detach.DetachActivity"
-            android:label="Detach" />
-        <activity
-            android:name=".livedata.LiveDataActivity"
-            android:label="LiveData" />
-        <activity
-            android:name=".viewpager.ViewPagerActivity"
-            android:label="ViewPager" />
     </application>
 </manifest>

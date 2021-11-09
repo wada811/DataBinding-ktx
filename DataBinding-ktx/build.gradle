@@ -3,10 +3,10 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 31
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 29
+        targetSdkVersion 31
     }
     buildFeatures {
         dataBinding = true
@@ -15,5 +15,6 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.fragment:fragment:1.2.5'
+    //noinspection GradleDependency
+    implementation 'androidx.fragment:fragment-ktx:1.0.0'
 }

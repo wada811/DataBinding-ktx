@@ -13,14 +13,23 @@ fun <T : ViewDataBinding> Fragment.dataBinding(): ReadOnlyProperty<Fragment, T> 
     return object : ReadOnlyProperty<Fragment, T> {
         @Suppress("UNCHECKED_CAST")
         override fun getValue(thisRef: Fragment, property: KProperty<*>): T {
-            (requireView().getTag(property.name.hashCode()) as? T)?.let { return it }
+            (requireView().getTag(R.id.data_binding_tag) as? T)?.let { return it }
             return bind<T>(requireView()).also {
                 it.lifecycleOwner = thisRef.viewLifecycleOwner
-                it.root.setTag(property.name.hashCode(), it)
+                it.root.setTag(R.id.data_binding_tag, it)
             }
         }
 
         private fun <T : ViewDataBinding> bind(view: View): T = DataBindingUtil.bind(view)!!
+    }
+}
+
+fun <T : ViewDataBinding> Fragment.withBinding(withBinding: (binding: T) -> Unit) {
+    view?.let { view ->
+        val binding = DataBindingUtil.bind<T>(view)!!.also {
+            it.lifecycleOwner = viewLifecycleOwner
+        }
+        withBinding(binding)
     }
 }
 
