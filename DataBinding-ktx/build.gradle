@@ -30,8 +30,8 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            release(MavenPublication) {
-                from components.release
+            maven(MavenPublication) {
+                from components.java
                 groupId = "com.github.wada811"
                 artifactId = "DataBinding-ktx"
                 version = "6.0.0"
