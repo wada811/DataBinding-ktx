@@ -10,7 +10,7 @@ class DataBindingFragment : Fragment(R.layout.data_binding_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         withBinding<DataBindingFragmentBinding> { binding ->
-            binding.text = """
+            binding.textView.text = """
                 withBinding<DataBindingFragmentBinding> { binding ->
                     // You can use binding
                 }

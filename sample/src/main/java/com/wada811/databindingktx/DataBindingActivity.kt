@@ -9,7 +9,7 @@ class DataBindingActivity : AppCompatActivity(R.layout.data_binding_activity) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         withBinding<DataBindingActivityBinding> { binding ->
-            binding.text = """
+            binding.textView.text = """
                 withBinding<DataBindingActivityBinding> { binding ->
                     // You can use binding
                 }
