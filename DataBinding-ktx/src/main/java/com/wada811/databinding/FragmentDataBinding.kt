@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
+@Deprecated("Use withBinding", level = DeprecationLevel.WARNING)
 fun <T : ViewDataBinding> Fragment.dataBinding(): ReadOnlyProperty<Fragment, T> {
     return object : ReadOnlyProperty<Fragment, T> {
         @Suppress("UNCHECKED_CAST")

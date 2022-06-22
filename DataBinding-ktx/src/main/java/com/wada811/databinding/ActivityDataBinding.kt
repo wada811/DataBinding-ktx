@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
 
+@Deprecated("Use withBinding", level = DeprecationLevel.WARNING)
 fun <T : ViewDataBinding> FragmentActivity.dataBinding(): Lazy<T> = lazy(LazyThreadSafetyMode.NONE) {
     bind<T>(getContentView()).also {
         it.lifecycleOwner = this@dataBinding

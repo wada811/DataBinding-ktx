@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "dependencyDashboard": true,
+  "packageRules": [
+    {
+      "groupName": "Android Gradle Plugin",
+      "matchPackagePatterns": [
+        "com\\.android\\.application",
+        "com\\.android\\.library"
+      ]
+    },
+    {
+      "groupName": "Kotlin",
+      "matchPackagePatterns": [
+        "^org\\.jetbrains\\.kotlin"
+      ]
+    }
+  ]
+}

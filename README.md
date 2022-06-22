@@ -9,7 +9,7 @@ DataBinding-ktx
 
 - `DataBinding-ktx` is automatically calling `setLifecycleOwner`.
 - `DataBinding-ktx` provides `withBinding` method accessing the `binding` variable by lambda.
-- `DataBinding-ktx` provides `dataBinding` method accessing the `binding` variable by delegated property.
+- [Deprecated] `DataBinding-ktx` provides `dataBinding` method accessing the `binding` variable by delegated property.
 
 ## Usage
 
@@ -21,7 +21,7 @@ withBinding<DataBindingActivityBinding> { binding ->
 }
 ```
 
-### Delegated Property
+### [Deprecated] Delegated Property
 
 ```kotlin
 private val binding: DataBindingActivityBinding by dataBinding()
