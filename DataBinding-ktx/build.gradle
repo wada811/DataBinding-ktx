@@ -3,7 +3,6 @@ plugins {
     id 'com.diffplug.spotless'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt'
-    id 'maven-publish'
 }
 
 apply from: "${rootDir}/publish-module.gradle"
