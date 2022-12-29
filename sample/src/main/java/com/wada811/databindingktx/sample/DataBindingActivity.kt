@@ -1,10 +1,10 @@
-package com.wada811.databindingktx
+package com.wada811.databindingktx.sample
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wada811.databinding.withBinding
-import com.wada811.databindingktx.databinding.DataBindingActivityBinding
+import com.wada811.databindingktx.sample.databinding.DataBindingActivityBinding
+import com.wada811.databindingktx.withBinding
 
 class DataBindingActivity : AppCompatActivity(R.layout.data_binding_activity) {
     @SuppressLint("SetTextI18n")

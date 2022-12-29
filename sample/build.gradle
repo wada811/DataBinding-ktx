@@ -5,11 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 32
+    namespace "com.wada811.databindingktx.sample"
+    compileSdkVersion 33
     defaultConfig {
-        applicationId "com.wada811.databindingktx"
-        minSdkVersion 16
-        targetSdkVersion 32
+        applicationId "com.wada811.databindingktx.sample"
+        minSdkVersion 21
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

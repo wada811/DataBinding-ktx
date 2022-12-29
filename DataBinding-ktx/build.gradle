@@ -6,12 +6,14 @@ plugins {
     id 'maven-publish'
 }
 
+apply from: "${rootDir}/publish-module.gradle"
+
 android {
-    namespace "com.wada811.databinding"
-    compileSdkVersion 32
+    namespace "com.wada811.databindingktx"
+    compileSdkVersion 33
     defaultConfig {
-        minSdkVersion 16
-        targetSdkVersion 32
+        minSdkVersion 21
+        targetSdkVersion 33
     }
     buildFeatures {
         dataBinding true
@@ -27,19 +29,5 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0"
-    //noinspection GradleDependency
     implementation 'androidx.fragment:fragment-ktx:1.5.5'
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = "com.github.wada811"
-                artifactId = "DataBinding-ktx"
-                version = "7.0.0"
-            }
-        }
-    }
 }

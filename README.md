@@ -21,7 +21,7 @@ withBinding<DataBindingActivityBinding> { binding ->
 }
 ```
 
-### [Deprecated] Delegated Property
+### Delegated Property
 
 ```kotlin
 private val binding: DataBindingActivityBinding by dataBinding()
@@ -33,7 +33,7 @@ If you access the binding property when fragment's view may be destroyed, you mu
 
 ## Gradle
 
-[![](https://jitpack.io/v/wada811/DataBinding-ktx.svg)](https://jitpack.io/#wada811/DataBinding-ktx)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.wada811.databindingktx/databindingktx/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.wada811.databindingktx/databindingktx)
 
 ```groovy
 android {
@@ -43,12 +43,30 @@ android {
 }
 
 repositories {
-    maven { url "https://www.jitpack.io" }
+    mavenCentral()
 }
 
 dependencies {
-    implementation 'com.github.wada811:DataBinding-ktx:x.y.z'
+    implementation 'com.wada811.databindingktx:databindingktx:x.y.z'
 }
+```
+
+## Migrations
+
+### 7.0.0
+
+#### dependencies
+
+```diff
+-    implementation 'com.github.wada811:DataBinding-ktx:x.y.z'
++    implementation 'com.wada811.databindingktx:databindingktx:x.y.z'
+```
+
+#### package
+
+```diff
+-import com.wada811.databinding
++import com.wada811.databindingktx
 ```
 
 ## License

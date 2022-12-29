@@ -1,0 +1,72 @@
+apply plugin: 'maven-publish'
+apply plugin: 'signing'
+
+ext {
+    PUBLISH_GROUP_ID = 'com.wada811.databindingktx'
+    PUBLISH_ARTIFACT_ID = 'databindingktx'
+    PUBLISH_VERSION = '7.0.0'
+}
+
+android {
+    publishing {
+        singleVariant('release') {
+            withSourcesJar()
+        }
+    }
+}
+
+signing {
+    useInMemoryPgpKeys(
+            rootProject.ext["signing.keyId"],
+            rootProject.ext["signing.key"],
+            rootProject.ext["signing.password"],
+    )
+    sign publishing.publications
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                // Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                pom {
+                    name = PUBLISH_ARTIFACT_ID
+                    description = 'DataBinding-ktx make easy to use DataBinding.'
+                    url = 'https://github.com/wada811/DataBinding-ktx'
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        }
+                    }
+                    developers {
+                        developer {
+                            id = 'wada811'
+                            name = 'WADA Takumi'
+                            email = 'at.wada811@gmail.com'
+                        }
+                    }
+                    scm {
+                        connection = 'scm:git:github.com/wada811/DataBinding-ktx.git'
+                        developerConnection = 'scm:git:ssh://github.com/wada811/DataBinding-ktx.git'
+                        url = 'https://github.com/wada811/DataBinding-ktx/tree/master'
+                    }
+                }
+            }
+        }
+    }
+}
