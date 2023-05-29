@@ -27,6 +27,6 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.21"
     implementation 'androidx.fragment:fragment-ktx:1.5.7'
 }
