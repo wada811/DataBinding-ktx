@@ -1,19 +1,19 @@
 DataBinding-ktx
 =====
 
-`DataBinding-ktx` make easy to use DataBinding.
+`DataBinding-ktx` makes it easy to use DataBinding.
 
 [ViewBinding-ktx](https://github.com/wada811/ViewBinding-ktx) is here.
 
 ## Overview
 
 - `DataBinding-ktx` is automatically calling `setLifecycleOwner`.
-- `DataBinding-ktx` provides `withBinding` method accessing the `binding` variable by lambda.
-- [Deprecated] `DataBinding-ktx` provides `dataBinding` method accessing the `binding` variable by delegated property.
+- `DataBinding-ktx` provides the `withBinding` method accessing the `binding` variable by lambda.
+- `DataBinding-ktx` provides the `dataBinding` method accessing the `binding` variable by delegated property.
 
 ## Usage
 
-### Lambda
+### Lambda (Recommended)
 
 ```kotlin
 withBinding<DataBindingActivityBinding> { binding ->
@@ -28,8 +28,8 @@ private val binding: DataBindingActivityBinding by dataBinding()
 ```
 
 Note:
-In Fragment, When fragment's view is destroyed, an IllegalStateException is thrown on accessing the binding property.  
-If you access the binding property when fragment's view may be destroyed, you must use the Lambda way above.
+In Fragment, When the fragment's view is destroyed, an IllegalStateException is thrown on accessing the binding property.  
+If you access the binding property when the fragment's view may be destroyed, you must use the Lambda way above.
 
 ## Gradle
 
