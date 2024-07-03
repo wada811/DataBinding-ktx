@@ -6,11 +6,11 @@ plugins {
 
 android {
     namespace "com.wada811.databindingktx.sample"
-    compileSdkVersion 33
+    compileSdk 34
     defaultConfig {
         applicationId "com.wada811.databindingktx.sample"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -29,10 +29,17 @@ android {
     buildFeatures {
         dataBinding true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17.toString()
+    }
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.24"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:2.0.0"
     implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation project(':DataBinding-ktx')
 }
