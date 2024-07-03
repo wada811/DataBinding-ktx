@@ -6,7 +6,6 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import com.wada811.databindingktx.R
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -25,7 +24,7 @@ fun <T : ViewDataBinding> Fragment.dataBinding(): ReadOnlyProperty<Fragment, T> 
     }
 }
 
-fun <T : ViewDataBinding> Fragment.withBinding(withBinding: (binding: T) -> Unit) {
+inline fun <T : ViewDataBinding> Fragment.withBinding(withBinding: (binding: T) -> Unit) {
     view?.let { view ->
         val binding = DataBindingUtil.bind<T>(view)!!.also {
             it.lifecycleOwner = viewLifecycleOwner
